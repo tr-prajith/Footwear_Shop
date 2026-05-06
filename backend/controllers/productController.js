@@ -1,5 +1,6 @@
 const Products = require('../models/productModel')
 
+// Admin Login
 // Create Product
 const createProduct = async (req, res) => {
     const { name, brand, price, description, sizes, stock, image } = req.body
