@@ -1,6 +1,28 @@
 const Products = require('../models/productModel')
+const User = require('../models/userModel')
 
 // Admin Login
+const adminLogin = async (req, res) => {
+    const { email, password } = req.body
+    try {
+        const admin = await User.findOne({ email })
+        if (!admin) {
+            res.status(404).json({ msg: "Admin not found" })
+        }
+
+        const matchPassword = await bcrypt.compare(password, admin.password)
+        if (!matchPassword) {
+            res.status(200).json({ msg: " Invalid Credentials " })
+        }
+
+        const token = Jwt.sign({ id: admin.id, role: admin.role }, process.env.SECRET_KEY, { expiresIn: '1h' })
+        res.status(200).json({ msg: "Admin Login Successfull", token: token })
+    } catch (error) {
+        res.status(500).json({ msg: "Admin Login failed" })
+    }
+}
+
+
 // Create Product
 const createProduct = async (req, res) => {
     const { name, brand, price, description, sizes, stock, image } = req.body
@@ -50,10 +72,10 @@ const deleteProduct = async (req, res) => {
         if (!deleteData) {
             res.status(404).json({ msg: "Product Not Found" })
         }
-        res.status(200).json({msg: "Product Deleted Successfully"})
-    }catch(error){
-        res.status(500).json({msg: "Unable to delete the product. Please try again later.", error})
+        res.status(200).json({ msg: "Product Deleted Successfully" })
+    } catch (error) {
+        res.status(500).json({ msg: "Unable to delete the product. Please try again later.", error })
     }
 }
 
-module.exports = { createProduct, showProduct, updateProduct, deleteProduct }
+module.exports = { createProduct, showProduct, updateProduct, deleteProduct, adminLogin }

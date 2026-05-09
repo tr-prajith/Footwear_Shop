@@ -43,7 +43,8 @@ const userLogin = async (req, res) => {
 
         // json webtoken generating
         const token = jwt.sign({ id: user.id, role: user.role }, process.env.SECRET_KEY, { expiresIn: '1h' })
-        return res.status(200).json({ msg: "Login Successfully", token: token })
+        return res.status(200).json({ msg: "Login Successfully", token: token})
+        console.log(userData)
     } catch (error) {
         return res.status(500).json({ msg: "Server Error", error })
     }
@@ -75,7 +76,7 @@ const forgotPassword = async (req, res) => {
 // Reset Password
 const resetPassword = async (req, res) => {
     try {
-        const { token, newPassword , name} = req.body
+        const { token, newPassword, name } = req.body
 
         const user = await User.findOne({
             resetToken: token,
@@ -95,8 +96,8 @@ const resetPassword = async (req, res) => {
 
         // Checking the new password and the old password same or not
         const isSame = await bcrypt.compare(newPassword, user.password)
-        if(isSame){
-            res.status(400).json({msg:"New password should not same as the old password"})
+        if (isSame) {
+            res.status(400).json({ msg: "New password should not same as the old password" })
         }
 
     } catch (error) {
@@ -104,4 +105,33 @@ const resetPassword = async (req, res) => {
     }
 };
 
-module.exports = { registerUser, userLogin, forgotPassword, resetPassword }
+// Update the User Details
+const updateUser = async (req, res) => {
+    try {
+        const { id } = req.params
+        const updateData = await User.findByIdAndUpdate(id, req.body, { new: true })
+        if (!updateData) {
+            res.status(404).json({ msg: "User Not Found" })
+        }
+        res.status(200).json({ msg: "User details updated successfully", updatedata: updateData })
+    } catch (error) {
+        res.status(500).json({ msg: "User Updation Failed", error })
+    }
+}
+
+// Delete User
+const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params
+        const deleteData = await User.findByIdAndDelete(id, req.body, { new: true })
+        if (!deleteData) {
+            res.status(404).json({msg: "User Not Found"})
+        }
+        res.status(200).json({msg:"User Deleted Successfully"})
+    }catch(error){
+        res.status(500).json({msg:"User Deletion failed",error})
+    }
+}
+
+
+module.exports = { registerUser, userLogin, forgotPassword, resetPassword, updateUser, deleteUser }

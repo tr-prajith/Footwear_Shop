@@ -6,9 +6,9 @@ const authMiddleware = async (req, res, next) => {
         return res.status(401).json({ msg: "No Token, Authorization Denied" })
     }
     try {
-        const token = header.split(" ")[1]
+        const token = header.split(" ")[1] 
         const decodedToken = jwt.verify(token, process.env.SECRET_KEY)
-        req.user = decodedToken
+        req.admin = decodedToken
         next()
     } catch (error) {
         return res.status(401).json({ msg: "Invalid Token" })
