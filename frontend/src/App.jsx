@@ -1,13 +1,16 @@
 import React from 'react'
-import Navabar from './components/Navbar'
-import GetProducts from './user/GetProducts'
+import {BrowserRouter as Router } from 'react-router-dom'
+import AdminRoutes from './routes/AdminRoutes'
+import UserRoutes from './routes/UserRoutes'
 
 const App = () => {
   return (
-    <div>
-      <Navabar />
-      <GetProducts />
-    </div>
+    <Router>
+      <AdminRoutes />
+      <UserRoutes/>
+    </Router>
+
+
   )
 }
 

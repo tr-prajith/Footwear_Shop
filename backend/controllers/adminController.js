@@ -1,4 +1,6 @@
 const Products = require('../models/productModel')
+const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 
 // Admin Login
@@ -7,18 +9,24 @@ const adminLogin = async (req, res) => {
     try {
         const admin = await User.findOne({ email })
         if (!admin) {
-            res.status(404).json({ msg: "Admin not found" })
+           return res.status(404).json({ msg: "Admin not found" })
+        }
+
+        if( admin.role !== "admin"){
+            res.status(403).json({msg: "Access Denied"})
         }
 
         const matchPassword = await bcrypt.compare(password, admin.password)
         if (!matchPassword) {
-            res.status(200).json({ msg: " Invalid Credentials " })
+           return res.status(401).json({ msg: " Invalid Credentials " })
         }
 
-        const token = Jwt.sign({ id: admin.id, role: admin.role }, process.env.SECRET_KEY, { expiresIn: '1h' })
+        const token = jwt.sign({ id: admin.id, role: admin.role }, process.env.SECRET_KEY, { expiresIn: '1h' })
         res.status(200).json({ msg: "Admin Login Successfull", token: token })
     } catch (error) {
         res.status(500).json({ msg: "Admin Login failed" })
+        console.log(error);
+        
     }
 }
 
@@ -33,9 +41,11 @@ const createProduct = async (req, res) => {
             name, brand, price, description, sizes, stock, image
         })
         await newProduct.save()
-        res.status(201).json({ msg: "Item Created Successfully", data: product })
+        res.status(201).json({ msg: "Item Created Successfully", data: newProduct })
     } catch (error) {
         res.status(500).json({ msg: "Product not added", error })
+        console.log(error);
+        
     }
 }
 
@@ -78,4 +88,4 @@ const deleteProduct = async (req, res) => {
     }
 }
 
-module.exports = { createProduct, showProduct, updateProduct, deleteProduct, adminLogin }
+module.exports = { adminLogin, createProduct, showProduct, updateProduct, deleteProduct  }

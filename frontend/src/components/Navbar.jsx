@@ -1,44 +1,33 @@
-import React from "react";
-import styled from "styled-components"
+import React from 'react'
+import '../styles/user/Navbar.css'
+import { NavLink } from 'react-router-dom'
 
-const Container = styled.div`
-    background-color: yellow;
-`
-const Nav = styled.div`
-/* display: flex;
-justify-content: space-between; */
-background-color: #dddddd;
-padding: 20px;
-    
-`;
-
-const NavLogo = styled.div`
-    color: orange;
-`
-
-const NavItems = styled.a`
-    list-style-type: none;
-    text-decoration: none;
-`;
-
-const Navabar = () => {
+const Navbar = () => {
     return (
-        <Container>
-            <Nav>
-                <NavLogo></NavLogo>
-                <NavItems>
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Men</a></li>
-                    <li><a href="">Women</a></li>
-                    <li><a href="">Kids</a></li>
-                    <li><a href="">Brands</a></li>
-                    <li><a href="">New Arrivals</a></li>
-                    <li><a href="">Offers</a></li>
-                </NavItems>
 
-            </Nav>
-        </Container>
+        // Navbar Logo Section
+        <div className="container">
+            <div className="nav">
+                <div className='logo-section'>
+                    <img src="../assets/logo.png" alt="logo" />
+
+                    <div>
+                        <h1>Step<span>Up</span></h1>
+                        <p>FOOTWEAR</p>
+                    </div>
+                </div>
+                <div className="nav-items">
+                    <NavLink to='/home'>Home</NavLink>
+                    <NavLink to='/men'>Men</NavLink>
+                    <NavLink to='/women'>Women</NavLink>
+                    <NavLink to='/kids'>Kids</NavLink>
+                    <NavLink to='/brands'>Brands</NavLink>
+                    <NavLink to='/new-arrivals'>New Arrivals</NavLink>
+                    <NavLink to='/offers'>Offers</NavLink>
+                </div>
+            </div>
+        </div>
     )
 }
 
-export default Navabar
+export default Navbar
