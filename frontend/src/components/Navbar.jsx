@@ -1,6 +1,7 @@
 import React from 'react'
 import '../styles/user/Navbar.css'
 import { NavLink } from 'react-router-dom'
+import {  FaSearch, FaShoppingBag, FaUser } from "react-icons/fa";
 
 const Navbar = () => {
     return (
@@ -24,6 +25,11 @@ const Navbar = () => {
                     <NavLink to='/brands'>Brands</NavLink>
                     <NavLink to='/new-arrivals'>New Arrivals</NavLink>
                     <NavLink to='/offers'>Offers</NavLink>
+                </div>
+                <div className="nav-icons">
+                    <FaSearch/>
+                    <FaUser/>
+                    <FaShoppingBag />                    
                 </div>
             </div>
         </div>
