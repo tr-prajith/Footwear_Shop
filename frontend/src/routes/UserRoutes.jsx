@@ -6,8 +6,8 @@ import UserHome from '../user/pages/userHome'
 const UserRoutes = () => {
     return (
         <Routes>
-            <Route path='/navbar' element={<Navbar />}>
-                {/* <Route path='/home' element={UserHome} /> */}
+            <Route path='/' element={<Navbar />}>
+            <Route path='/home' element={<UserHome/>} />
 
             </Route>
         </Routes>

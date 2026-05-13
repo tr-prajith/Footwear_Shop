@@ -12,15 +12,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 20px 100px 20px 100px;
 }
 .logo-section img{
-    width: 100px;
-    height: 80px;
+    width: 140px;
+    height: 100px;
 }
 
 .logo-section h1{
-    font-size: 42px;
+    font-size: 58px;
     font-weight: bold;
     margin: 0;
 }
@@ -28,13 +28,13 @@
 .logo-section p{
     letter-spacing: 4px;
     margin: 0;
-    font-size: 18px;
+    font-size: 26px;
 }
 
 .nav-items{
     display: flex;
-    gap:15px ;
-    font-size: 25px;
+    gap:30px ;
+    font-size: 30px;
 }
 
 .nav-items a{
@@ -56,5 +56,6 @@
 
 .nav-icons{
     display: flex;
-    gap: 20px;
+    gap: 45px;
+    font-size: 40px;
 }

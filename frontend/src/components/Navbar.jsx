@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../styles/user/Navbar.css'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {  FaSearch, FaShoppingBag, FaUser } from "react-icons/fa";
 
 const Navbar = () => {
+
+    const [ShowLogin, setShowLogin] = useState (false)
+
     return (
 
         // Navbar Logo Section
@@ -17,18 +20,22 @@ const Navbar = () => {
                         <p>FOOTWEAR</p>
                     </div>
                 </div>
+
+                {/* Nav items */}
                 <div className="nav-items">
-                    <NavLink to='/home'>Home</NavLink>
-                    <NavLink to='/men'>Men</NavLink>
-                    <NavLink to='/women'>Women</NavLink>
-                    <NavLink to='/kids'>Kids</NavLink>
-                    <NavLink to='/brands'>Brands</NavLink>
-                    <NavLink to='/new-arrivals'>New Arrivals</NavLink>
-                    <NavLink to='/offers'>Offers</NavLink>
+                    <Link to='/home'>Home</Link>
+                    <Link to='/men'>Men</Link>
+                    <Link to='/women'>Women</Link>
+                    <Link to='/kids'>Kids</Link>
+                    <Link to='/brands'>Brands</Link>
+                    <Link to='/new-arrivals'>New Arrivals</Link>
+                    <Link to='/offers'>Offers</Link>
                 </div>
+
+                {/* icons */}
                 <div className="nav-icons">
                     <FaSearch/>
-                    <FaUser/>
+                    <FaUser onClick={()=> setShowLogin(true)} />
                     <FaShoppingBag />                    
                 </div>
             </div>
