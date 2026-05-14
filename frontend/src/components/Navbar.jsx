@@ -5,7 +5,6 @@ import {  FaSearch, FaShoppingBag, FaUser } from "react-icons/fa";
 
 const Navbar = () => {
 
-    const [ShowLogin, setShowLogin] = useState (false)
 
     return (
 
@@ -35,7 +34,7 @@ const Navbar = () => {
                 {/* icons */}
                 <div className="nav-icons">
                     <FaSearch/>
-                    <FaUser onClick={()=> setShowLogin(true)} />
+                    <Link to='/login'><FaUser /></Link>
                     <FaShoppingBag />                    
                 </div>
             </div>

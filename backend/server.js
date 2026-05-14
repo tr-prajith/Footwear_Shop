@@ -4,9 +4,12 @@ const connectDB = require('./config/db')
 connectDB()
 const UserRoutes = require('./routes/userRoute')
 const AdminRoutes = require('./routes/adminRoute')
+const cookieParser = require('cookie-parser')
 
 // connecting to backend
+app.use(cookieParser())
 const cors = require('cors')
+
 app.use(cors(
     {
         origin:"http://localhost:5173"

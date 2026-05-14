@@ -42,8 +42,16 @@ const userLogin = async (req, res) => {
         }
 
         // json webtoken generating
-        const token = jwt.sign({ id: user.id, role: user.role }, process.env.SECRET_KEY, { expiresIn: '1h' })
-        return res.status(200).json({ msg: "Login Successfully", token: token})
+        const token = jwt.sign({ id: user._id, role: user.role }, process.env.SECRET_KEY, { expiresIn: '1h' })
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "Strict",
+            maxAge: 24 * 60 * 60 * 1000
+        })
+
+        return res.status(200).json({ msg: "Login Successfully", token: token })
         console.log(userData)
     } catch (error) {
         return res.status(500).json({ msg: "Server Error", error })
@@ -125,11 +133,11 @@ const deleteUser = async (req, res) => {
         const { id } = req.params
         const deleteData = await User.findByIdAndDelete(id, req.body, { new: true })
         if (!deleteData) {
-            res.status(404).json({msg: "User Not Found"})
+            res.status(404).json({ msg: "User Not Found" })
         }
-        res.status(200).json({msg:"User Deleted Successfully"})
-    }catch(error){
-        res.status(500).json({msg:"User Deletion failed",error})
+        res.status(200).json({ msg: "User Deleted Successfully" })
+    } catch (error) {
+        res.status(500).json({ msg: "User Deletion failed", error })
     }
 }
 

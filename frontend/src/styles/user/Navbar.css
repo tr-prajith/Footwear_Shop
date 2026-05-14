@@ -1,7 +1,7 @@
 .logo-section{
     display: flex;
     align-items: center;
-    gap: 10px;
+    /* gap: 10px; */
 }
 
 .logo-section span{
@@ -12,15 +12,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 100px 20px 100px;
+    padding: 20px 80px 20px 80px;
 }
 .logo-section img{
-    width: 140px;
-    height: 100px;
+    width: 100px;
+    height: 60px;
 }
 
 .logo-section h1{
-    font-size: 58px;
+    font-size: 45px;
     font-weight: bold;
     margin: 0;
 }
@@ -28,13 +28,13 @@
 .logo-section p{
     letter-spacing: 4px;
     margin: 0;
-    font-size: 26px;
+    font-size: 19px;
 }
 
 .nav-items{
     display: flex;
     gap:30px ;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .nav-items a{
@@ -57,5 +57,5 @@
 .nav-icons{
     display: flex;
     gap: 45px;
-    font-size: 40px;
+    font-size: 20px;
 }
