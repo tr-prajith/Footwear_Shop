@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router'
-import '../styles/user/Login.css'
+import { Link } from 'react-router-dom'
+import './Login.css'
 
 
 

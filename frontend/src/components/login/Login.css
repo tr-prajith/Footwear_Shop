@@ -1,5 +1,6 @@
 .container{
     padding: 100px;
+    
 }
 
 .card{
@@ -30,6 +31,7 @@ button{
 
 p {
     color: white;
+    font-weight: bold;
       
 }
 

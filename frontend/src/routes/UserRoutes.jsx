@@ -1,9 +1,11 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
-import Navbar from '../components/Navbar'
+
 import UserHome from '../user/pages/userHome'
-import Login from '../components/Login'
+
 import SignUp from '../components/SignUp'
+import Login from '../components/login/Login'
+import Navbar from '../components/navbar/Navbar'
 
 const UserRoutes = () => {
     return (

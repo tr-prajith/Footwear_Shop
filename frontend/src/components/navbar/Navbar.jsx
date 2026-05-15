@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../styles/user/Navbar.css'
+import '../navbar/Navbar.css'
 import { Link } from 'react-router-dom'
 import {  FaSearch, FaShoppingBag, FaUser } from "react-icons/fa";
 
@@ -9,7 +9,7 @@ const Navbar = () => {
     return (
 
         // Navbar Logo Section
-        <div className="container">
+        <div className="Container">
             <div className="nav">
                 <div className='logo-section'>
                     <img src="../assets/logo.png" alt="logo" />
