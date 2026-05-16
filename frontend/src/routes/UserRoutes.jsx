@@ -4,8 +4,8 @@ import { Route, Routes } from 'react-router-dom'
 import UserHome from '../user/pages/userHome'
 
 import SignUp from '../components/SignUp'
-import Login from '../components/login/Login'
-import Navbar from '../components/navbar/Navbar'
+import Login from '../components/Login'
+import Navbar from '../components/Navbar'
 
 const UserRoutes = () => {
     return (

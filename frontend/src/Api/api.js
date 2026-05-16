@@ -6,7 +6,8 @@ export const getData = async () => {
     return api.json()
 }
 
-export const userLogin = async () => {
+// User Login
+export const userLogin = async (postdata) => {
     const res= await fetch (`${baseurl}/user/login`,
         {
             method : "POST",
@@ -17,6 +18,7 @@ export const userLogin = async () => {
         })
         return res.json()
 }
+
 // Admin Login
 export const login = async () => {
     const api = await fetch(`${baseurl}/admin/login`)

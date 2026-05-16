@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../navbar/Navbar.css'
+import '../styles/Navbar.css'
 import { Link } from 'react-router-dom'
 import {  FaSearch, FaShoppingBag, FaUser } from "react-icons/fa";
 
