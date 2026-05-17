@@ -6,17 +6,30 @@ export const getData = async () => {
     return api.json()
 }
 
-// User Login
-export const userLogin = async (postdata) => {
-    const res= await fetch (`${baseurl}/user/login`,
+// User Registration
+export const userRegister = async (postdata) => {
+    const res = await fetch(`${baseurl}/user/signup`,
         {
-            method : "POST",
-            headers : {
-                "Content-Type" : "application/json"
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json"
             },
-            body:JSON.stringify (postdata)
+            body: JSON.stringify(postdata)
         })
         return res.json()
+}
+
+// User Login
+export const userLogin = async (postdata) => {
+    const res = await fetch(`${baseurl}/user/login`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(postdata)
+        })
+    return res.json()
 }
 
 // Admin Login
