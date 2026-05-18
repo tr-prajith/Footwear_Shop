@@ -5,14 +5,16 @@ connectDB()
 const UserRoutes = require('./routes/userRoute')
 const AdminRoutes = require('./routes/adminRoute')
 const cookieParser = require('cookie-parser')
+const cors = require('cors')
 
 // connecting to backend
 app.use(cookieParser())
-const cors = require('cors')
+
 
 app.use(cors(
     {
-        origin:"http://localhost:5173"
+        origin:"http://localhost:5173",
+        credentials:true
     }
 ))
 app.use(express.json())

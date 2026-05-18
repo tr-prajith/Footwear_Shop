@@ -1,6 +1,6 @@
 /* AdminHome.css */
 
-.container {
+.admin-container {
   width: 100%;
   min-height: 100vh;
   background: #f4f6f9;
@@ -10,7 +10,7 @@
   padding: 20px;
 }
 
-.card {
+.Card {
   width: 100%;
   max-width: 500px;
   background: #ffffff;

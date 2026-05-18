@@ -28,7 +28,9 @@ const AdminHome = () => {
 
     try {
       const res = await addProduct(data)
-      if (res.data.success) {
+
+      
+      if (res.success) {
         console.log("Product Added Successfully");
         navigate('/list-products')
         alert("Product Added Successfully")
@@ -50,9 +52,9 @@ const AdminHome = () => {
     }
   }
   return (
-    <div className='container'>
-      <div className="card">
-        <div className="head">
+    <div className='admin-container'>
+      <div className="admin-card">
+        <div className="admin-head">
           <h2>Add Product</h2>
         </div>
         <form className='add-item' onSubmit={handleSubmit}>

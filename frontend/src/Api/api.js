@@ -14,6 +14,7 @@ export const userRegister = async (postdata) => {
             headers: {
                 "Content-Type": "application/json"
             },
+            
             body: JSON.stringify(postdata)
         })
         return res.json()
@@ -27,6 +28,7 @@ export const userLogin = async (postdata) => {
             headers: {
                 "Content-Type": "application/json"
             },
+            credentials:"include",
             body: JSON.stringify(postdata)
         })
     return res.json()
@@ -44,7 +46,8 @@ export const addProduct =async (addData) => {
                 
                 "Content-Type": "application/json"
             },
+            credentials: "include",
             body: JSON.stringify(addData)
-        }
-    )
+        })
+        return res.json()
 }

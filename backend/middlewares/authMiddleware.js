@@ -1,7 +1,9 @@
 const jwt = require('jsonwebtoken')
-const userMiddleware = async (req, res, next) => {
+const AuthMiddleware = async (req, res, next) => {
     try{
         const token = req.cookies.token
+        console.log(token);
+        
         if(!token){
             return res.status(401).json({msg:"Not Authenticated"})
         }
@@ -14,5 +16,5 @@ const userMiddleware = async (req, res, next) => {
 
 }
 
-module.exports = userMiddleware
+module.exports = AuthMiddleware
 

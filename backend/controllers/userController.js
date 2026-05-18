@@ -46,12 +46,15 @@ const userLogin = async (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: true,
-            sameSite: "Strict",
+            secure: false,
+            sameSite: "lax",
             maxAge: 24 * 60 * 60 * 1000
+            
         })
+        console.log("Cookie sent")
 
         return res.status(200).json({ msg: "Login Successfully", token: token ,success:true, data:user.role })
+        
         console.log(userData)
     } catch (error) {
         return res.status(500).json({ msg: "Server Error", error })
