@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Navbar from '../components/Navbar'
-import UserHome from '../user/pages/userHome'
+import UserHome from '../user/userHome'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 import Forgot from '../components/Forgot'
@@ -16,8 +16,6 @@ const UserRoutes = () => {
             <Route path='/signup' element={<SignUp />} />
             <Route path='/forgot' element={<Forgot/>}/>
             <Route path='/reset' element={<Reset/>}/>
-
-            
         </Routes>
     )
 }

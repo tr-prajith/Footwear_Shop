@@ -32,8 +32,19 @@ export const userLogin = async (postdata) => {
     return res.json()
 }
 
-// Admin Login
-export const login = async () => {
-    const api = await fetch(`${baseurl}/admin/login`)
-    return api.json()
+
+
+
+// Admin Add product 
+export const addProduct =async (addData) => {
+    const res = await fetch(`${baseurl}/admin/add`,
+        {
+            method:"POST",
+            headers: {
+                
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(addData)
+        }
+    )
 }

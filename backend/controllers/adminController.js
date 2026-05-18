@@ -22,7 +22,7 @@ const adminLogin = async (req, res) => {
         }
 
         const token = jwt.sign({ id: admin.id, role: admin.role }, process.env.SECRET_KEY, { expiresIn: '1h' })
-        res.status(200).json({ msg: "Admin Login Successfull", token: token })
+        res.status(200).json({ msg: "Admin Login Successfull", token: token, success: true })
     } catch (error) {
         res.status(500).json({ msg: "Admin Login failed" })
         console.log(error);
@@ -41,7 +41,7 @@ const createProduct = async (req, res) => {
             name, brand, price, description, sizes, stock, image
         })
         await newProduct.save()
-        res.status(201).json({ msg: "Item Created Successfully", data: newProduct })
+        res.status(201).json({ msg: "Item Created Successfully", data: newProduct, success:true })
     } catch (error) {
         res.status(500).json({ msg: "Product not added", error })
         console.log(error);

@@ -1,0 +1,86 @@
+/* AdminHome.css */
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: #f4f6f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 500px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.head {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.head h2 {
+  color: #222;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.add-item {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.add-item input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  outline: none;
+  font-size: 15px;
+  transition: 0.3s ease;
+  background: #fafafa;
+}
+
+.add-item input:focus {
+  border-color: #007bff;
+  background: #fff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+.add-item button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #007bff;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.add-item button:hover {
+  background: #0056b3;
+}
+
+.add-item button:active {
+  transform: scale(0.98);
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .card {
+    padding: 20px;
+  }
+
+  .head h2 {
+    font-size: 24px;
+  }
+}

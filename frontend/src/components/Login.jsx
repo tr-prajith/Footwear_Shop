@@ -26,8 +26,15 @@ const Login = () => {
     try {
       const res = await userLogin(form)
       if (res.success) {
+        console.log(res.data);
+        
         console.log("Logedin Successfully");
-        navigate('/')
+        if (res.data === "admin") {
+          navigate('/admin/add')
+        } else {
+          navigate('/')
+        }
+
         alert("Loggedin Successfully")
         setForm({
           email: "",
