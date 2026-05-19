@@ -54,7 +54,7 @@ const createProduct = async (req, res) => {
 const showProduct = async (req, res) => {
     try {
         const showData = await Products.find().sort({ createdAt: -1 })
-        res.status(200).json({ msg: "All Products", data: showData })
+        res.status(200).json({ msg: "All Products", data: showData, success:true })
     } catch (error) {
         res.status(500).json({ msg: "Unable to fetch products, Please try again later.", error })
     }

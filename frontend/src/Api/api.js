@@ -2,7 +2,11 @@ const baseurl = "http://localhost:5000"
 
 // Showing the product datas
 export const getData = async () => {
-    const api = await fetch(`${baseurl}/admin/show`)
+    const api = await fetch(`${baseurl}/admin/show`,
+        {
+            credentials:"include"
+        }
+    )
     return api.json()
 }
 
