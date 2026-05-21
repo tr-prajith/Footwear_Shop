@@ -6,49 +6,62 @@ import '../styles/admin/AdminHome.css'
 const AdminHome = () => {
 
   const navigate = useNavigate()
-  const [data, setData] = useState({
+  const [form,setForm] = useState({
     name: "",
     brand: "",
     price: "",
     description: "",
     sizes: "",
     stock: "",
-    // images: ""
   })
 
-  const handleChange = (e) =>{
-    setData({
-      ...data,
+  // image upload
+  const [image, setImage] = useState(null)
+
+  const handleChange = (e) => {
+    setForm({
+      ...form,
       [e.target.name]: e.target.value
     })
   }
-
-  const handleSubmit = async (e) =>{
+  const handleImage = (e) => {
+    setImage(e.target.files[0])
+  }
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     try {
-      const res = await addProduct(data)
 
-      
+      const data = new FormData()
+      Object.entries()
+
+     
+
+
+      const res = await addProduct(formData)
       if (res.success) {
         console.log("Product Added Successfully");
-        navigate('/list-products')
         alert("Product Added Successfully")
+        navigate('/list-products')
+
         setData({
-          name:"",
-          brand:"",
-          price:"",
-          description:"",
-          sizes: data.sizes.split(","),
-          stock: ""
+          name: "",
+          brand: "",
+          price: "",
+          description: "",
+          sizes: "",
+          stock: "",
+
         })
+        setImage(null)
+
       } else {
         console.log("Error in Creating Product");
       }
-    }catch(error){
+    } catch (error) {
       console.log(error);
       alert("Product Creation Failed")
-      
+
     }
   }
   return (
@@ -62,8 +75,9 @@ const AdminHome = () => {
           <input type="text" name='brand' value={data.brand} onChange={handleChange} placeholder='Enter the brand name' />
           <input type="number" name='price' value={data.price} onChange={handleChange} placeholder='Enter the product price' />
           <input type="text" name='description' value={data.description} onChange={handleChange} placeholder='Enter a product description' />
-          <input type="text" name='sizes' value={data.sizes} onChange={handleChange} placeholder='Enter the sizes'/>
-          <input type="number" name='stock' value={data.stock} onChange={handleChange} placeholder='Enter the available stock'/>
+          <input type="text" name='sizes' value={data.sizes} onChange={handleChange} placeholder='Enter the sizes' />
+          <input type="number" name='stock' value={data.stock} onChange={handleChange} placeholder='Enter the available stock' />
+          <input type="file" onChange={handleImage} accept='image/*' />
           <button type='submit'>Add</button>
         </form>
       </div>

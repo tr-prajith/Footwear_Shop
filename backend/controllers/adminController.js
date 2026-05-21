@@ -3,40 +3,16 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 
-// Admin Login
-// const adminLogin = async (req, res) => {
-//     const { email, password } = req.body
-//     try {
-//         const admin = await User.findOne({ email })
-//         if (!admin) {
-//            return res.status(404).json({ msg: "Admin not found" })
-//         }
 
-//         if( admin.role !== "admin"){
-//             res.status(403).json({msg: "Access Denied"})
-//         }
 
-//         const matchPassword = await bcrypt.compare(password, admin.password)
-//         if (!matchPassword) {
-//            return res.status(401).json({ msg: " Invalid Credentials " })
-//         }
-
-//         const token = jwt.sign({ id: admin.id, role: admin.role }, process.env.SECRET_KEY, { expiresIn: '1h' })
-//         res.status(200).json({ msg: "Admin Login Successfull", token: token, success: true })
-//     } catch (error) {
-//         res.status(500).json({ msg: "Admin Login failed" })
-//         console.log(error);
-        
-//     }
-// }
-
+// Using Multer to add image
 
 // Create Product
 const createProduct = async (req, res) => {
-    const { name, brand, price, description, sizes, stock, image } = req.body
+    const { name, brand, price, description, sizes, stock } = req.body
     try {
 
-
+        const image = req.file.filename
         const newProduct = new Products({
             name, brand, price, description, sizes, stock, image
         })

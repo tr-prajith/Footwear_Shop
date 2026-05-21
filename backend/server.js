@@ -7,10 +7,10 @@ const AdminRoutes = require('./routes/adminRoute')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
+// without this image wont appear in browser
+app.use('uploads', express.static('uploads'))
 // connecting to backend
 app.use(cookieParser())
-
-
 app.use(cors(
     {
         origin:"http://localhost:5173",

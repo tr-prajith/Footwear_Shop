@@ -1,14 +1,6 @@
 const baseurl = "http://localhost:5000"
 
-// Showing the product datas
-export const getData = async () => {
-    const api = await fetch(`${baseurl}/admin/show`,
-        {
-            credentials:"include"
-        }
-    )
-    return api.json()
-}
+
 
 // User Registration
 export const userRegister = async (postdata) => {
@@ -46,12 +38,18 @@ export const addProduct =async (addData) => {
     const res = await fetch(`${baseurl}/admin/add`,
         {
             method:"POST",
-            headers: {
-                
-                "Content-Type": "application/json"
-            },
             credentials: "include",
-            body: JSON.stringify(addData)
+            body: formData(addData)
         })
         return res.json()
+}
+
+// Showing the product datas
+export const getData = async () => {
+    const res = await fetch(`${baseurl}/admin/show`,
+        {
+            credentials:"include"
+        }
+    )
+    return res.json()
 }
