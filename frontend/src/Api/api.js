@@ -39,7 +39,7 @@ export const addProduct =async (addData) => {
         {
             method:"POST",
             credentials: "include",
-            body: formData(addData)
+            body: addData
         })
         return res.json()
 }

@@ -6,9 +6,11 @@ const UserRoutes = require('./routes/userRoute')
 const AdminRoutes = require('./routes/adminRoute')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
+const path = require('path')
 
 // without this image wont appear in browser
-app.use('uploads', express.static('uploads'))
+app.use('/uploads', express.static('uploads'))
+
 // connecting to backend
 app.use(cookieParser())
 app.use(cors(

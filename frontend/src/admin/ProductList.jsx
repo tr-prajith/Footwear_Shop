@@ -27,6 +27,8 @@ const ProductList = () => {
             <h1>{i.sizes}</h1>
             <h1>{i.stock}</h1>
             <h1>{i.description}</h1>
+             <img
+              src={`http://localhost:5000/uploads/${i.image}`}alt={i.name}width="200"/>
           </div>
         ))}
       </div>

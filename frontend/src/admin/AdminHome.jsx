@@ -30,21 +30,18 @@ const AdminHome = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    const formData = new FormData()
+    Object.entries(form).forEach(([key, value]) => formData.append(key, value))
+    if (image) formData.append('image', image)
+
     try {
-
-      const data = new FormData()
-      Object.entries()
-
-     
-
-
       const res = await addProduct(formData)
       if (res.success) {
         console.log("Product Added Successfully");
         alert("Product Added Successfully")
         navigate('/list-products')
 
-        setData({
+        setForm({
           name: "",
           brand: "",
           price: "",
@@ -71,13 +68,13 @@ const AdminHome = () => {
           <h2>Add Product</h2>
         </div>
         <form className='add-item' onSubmit={handleSubmit}>
-          <input type="text" name='name' value={data.name} onChange={handleChange} placeholder='Enter the product name' />
-          <input type="text" name='brand' value={data.brand} onChange={handleChange} placeholder='Enter the brand name' />
-          <input type="number" name='price' value={data.price} onChange={handleChange} placeholder='Enter the product price' />
-          <input type="text" name='description' value={data.description} onChange={handleChange} placeholder='Enter a product description' />
-          <input type="text" name='sizes' value={data.sizes} onChange={handleChange} placeholder='Enter the sizes' />
-          <input type="number" name='stock' value={data.stock} onChange={handleChange} placeholder='Enter the available stock' />
-          <input type="file" onChange={handleImage} accept='image/*' />
+          <input type="text" name='name' value={form.name} onChange={handleChange} placeholder='Enter the product name' />
+          <input type="text" name='brand' value={form.brand} onChange={handleChange} placeholder='Enter the brand name' />
+          <input type="number" name='price' value={form.price} onChange={handleChange} placeholder='Enter the product price' />
+          <input type="text" name='description' value={form.description} onChange={handleChange} placeholder='Enter a product description' />
+          <input type="text" name='sizes' value={form.sizes} onChange={handleChange} placeholder='Enter the sizes' />
+          <input type="number" name='stock' value={form.stock} onChange={handleChange} placeholder='Enter the available stock' />
+          <input type="file" name='image' onChange={handleImage} accept='image/*' />
           <button type='submit'>Add</button>
         </form>
       </div>
