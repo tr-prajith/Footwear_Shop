@@ -30,7 +30,7 @@ const Login = () => {
         
         console.log("Logedin Successfully");
         if (res.data === "admin") {
-          navigate('/admin/add')
+          navigate('/list-products')
         } else {
           navigate('/')
         }

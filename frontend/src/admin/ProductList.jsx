@@ -1,5 +1,6 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getData } from '../Api/api';
+import '../styles/admin/ProductList.css'
 
 
 
@@ -17,7 +18,9 @@ const ProductList = () => {
 
 
   return (
+    
     <div className="list-container">
+      
       <div className="list-card">
         {data.map((i) => (
           <div className="card-items" key={i._id}>
@@ -27,12 +30,16 @@ const ProductList = () => {
             <h1>{i.sizes}</h1>
             <h1>{i.stock}</h1>
             <h1>{i.description}</h1>
-             <img
-              src={`http://localhost:5000/uploads/${i.image}`}alt={i.name}width="200"/>
+            <img
+              src={`http://localhost:5000/uploads/${i.image}`} alt={i.name} width="200" />
           </div>
         ))}
       </div>
+     
+
     </div>
+     
+    
   )
 }
 

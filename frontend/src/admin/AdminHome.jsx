@@ -67,14 +67,14 @@ const AdminHome = () => {
         <div className="admin-head">
           <h2>Add Product</h2>
         </div>
-        <form className='add-item' onSubmit={handleSubmit}>
-          <input type="text" name='name' value={form.name} onChange={handleChange} placeholder='Enter the product name' />
-          <input type="text" name='brand' value={form.brand} onChange={handleChange} placeholder='Enter the brand name' />
-          <input type="number" name='price' value={form.price} onChange={handleChange} placeholder='Enter the product price' />
-          <input type="text" name='description' value={form.description} onChange={handleChange} placeholder='Enter a product description' />
-          <input type="text" name='sizes' value={form.sizes} onChange={handleChange} placeholder='Enter the sizes' />
-          <input type="number" name='stock' value={form.stock} onChange={handleChange} placeholder='Enter the available stock' />
-          <input type="file" name='image' onChange={handleImage} accept='image/*' />
+        <form className='add-item' onSubmit={handleSubmit} >
+          <input type="text" name='name' value={form.name} onChange={handleChange} placeholder='Enter the product name' required/>
+          <input type="text" name='brand' value={form.brand} onChange={handleChange} placeholder='Enter the brand name' required/>
+          <input type="number" name='price' value={form.price} onChange={handleChange} placeholder='Enter the product price' required/>
+          <input type="text" name='description' value={form.description} onChange={handleChange} placeholder='Enter a product description' required/>
+          <input type="text" name='sizes' value={form.sizes} onChange={handleChange} placeholder='Enter the sizes' required/>
+          <input type="number" name='stock' value={form.stock} onChange={handleChange} placeholder='Enter the available stock' required/>
+          <input type="file" name='image' onChange={handleImage} accept='image/*' required/>
           <button type='submit'>Add</button>
         </form>
       </div>

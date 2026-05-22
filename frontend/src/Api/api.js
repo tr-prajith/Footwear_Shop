@@ -53,3 +53,14 @@ export const getData = async () => {
     )
     return res.json()
 }
+
+
+// new added api for user home
+export const homeProduct = async () => {
+    const res =await fetch (`${baseurl}/user/`,
+        {
+            credentials:"include"
+        }
+    )
+    return res.json()
+}

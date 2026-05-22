@@ -1,25 +1,30 @@
-import React, { useEffect } from 'react'
-import { getData } from '../Api/api'
+import React, { useState, useEffect } from 'react'
+import { homeProduct } from '../Api/api'
 
 const Card = () => {
-    
-        const [data, setdata] = useState([])
-        useEffect(() => {
-    
-            const fetchdata = async () => {
-                const res = await getData()
-                setdata(res.data)
-            }
-            fetchdata()
-        }, [])
+
+  const [data, setdata] = useState([])
+  useEffect(() => {
+
+    const fetchdata = async () => {
+      const res = await homeProduct()
+      setdata(res.data)
+    }
+    fetchdata()
+  }, [])
   return (
-    <div className='container'>
-      <div className="card">
-        {data.map((i, index) => (
-          <div className="card-items">
+    <div className="list-container">
+      <div className="list-card">
+        {data.map((i) => (
+          <div className="card-items" key={i._id}>
             <h1>{i.name}</h1>
             <h1>{i.brand} </h1>
             <h1>{i.price} </h1>
+            <h1>{i.sizes}</h1>
+            <h1>{i.stock}</h1>
+            <h1>{i.description}</h1>
+            <img
+              src={`http://localhost:5000/uploads/${i.image}`} alt={i.name} width="200" />
           </div>
         ))}
       </div>

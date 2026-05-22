@@ -22,7 +22,7 @@ const Navbar = () => {
 
                 {/* Nav items */}
                 <div className="nav-items">
-                    <Link to='/home'>Home</Link>
+                    <Link to='/'>Home</Link>
                     <Link to='/men'>Men</Link>
                     <Link to='/women'>Women</Link>
                     <Link to='/kids'>Kids</Link>
