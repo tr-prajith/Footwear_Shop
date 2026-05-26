@@ -6,14 +6,14 @@ const baseurl = "http://localhost:5000"
 export const userRegister = async (postdata) => {
     const res = await fetch(`${baseurl}/user/signup`,
         {
-            method:"POST",
+            method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            
+
             body: JSON.stringify(postdata)
         })
-        return res.json()
+    return res.json()
 }
 
 // User Login
@@ -24,7 +24,7 @@ export const userLogin = async (postdata) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            credentials:"include",
+            credentials: "include",
             body: JSON.stringify(postdata)
         })
     return res.json()
@@ -34,21 +34,21 @@ export const userLogin = async (postdata) => {
 
 
 // Admin Add product 
-export const addProduct =async (addData) => {
+export const addProduct = async (addData) => {
     const res = await fetch(`${baseurl}/admin/add`,
         {
-            method:"POST",
+            method: "POST",
             credentials: "include",
             body: addData
         })
-        return res.json()
+    return res.json()
 }
 
 // Showing the product datas
 export const getData = async () => {
     const res = await fetch(`${baseurl}/admin/show`,
         {
-            credentials:"include"
+            credentials: "include"
         }
     )
     return res.json()
@@ -57,9 +57,35 @@ export const getData = async () => {
 
 // new added api for user home
 export const homeProduct = async () => {
-    const res =await fetch (`${baseurl}/user/`,
+    const res = await fetch(`${baseurl}/user/`,
         {
-            credentials:"include"
+            credentials: "include"
+        }
+    )
+    return res.json()
+}
+
+// Add to cart
+export const addToCart = async (cartData) => {
+    const res = await fetch(`${baseurl}/cart/add-cart`,
+        {
+            method: "POST",
+            headers: {
+                "Contend-Type" : "application/json"
+            },
+            credentials:"include",
+            body : JSON.stringify(cartData)
+        }
+    )
+    return res.json()
+}
+
+
+// Cart count
+export const cartCount = async () => {
+    const res = await fetch(`${baseurl}/cart/count`,
+        {
+            credentials: "include"
         }
     )
     return res.json()

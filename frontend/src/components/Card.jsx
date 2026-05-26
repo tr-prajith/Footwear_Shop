@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { homeProduct } from '../Api/api'
+import { addToCart, homeProduct } from '../Api/api'
+
 
 const Card = () => {
 
@@ -12,6 +13,17 @@ const Card = () => {
     }
     fetchdata()
   }, [])
+
+  const handleCart = async (product) => {
+    const cartData = {
+      productId: product._id,
+      quantity: 1,
+      size: product.sizes[0]
+    }
+    const res = await addToCart(cartData)
+    console.log(res);
+    
+  }
   return (
     <div className="list-container">
       <div className="list-card">
@@ -26,9 +38,10 @@ const Card = () => {
             <h1>Size: {i.sizes}</h1>
             <h1>Availbale stock: {i.stock}</h1>
             <h1>{i.description}</h1>
-            
+          <button type='submit' className='cart-btn' onClick={() => handleCart(i)}>Add to cart</button>
           </div>
         ))}
+        
       </div>
     </div>
   )

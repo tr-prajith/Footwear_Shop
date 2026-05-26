@@ -4,6 +4,7 @@ const connectDB = require('./config/db')
 connectDB()
 const UserRoutes = require('./routes/userRoute')
 const AdminRoutes = require('./routes/adminRoute')
+const CartRoutes = require('./routes/cartRoute')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const path = require('path')
@@ -22,6 +23,7 @@ app.use(cors(
 app.use(express.json())
 app.use('/user',UserRoutes)
 app.use('/admin',AdminRoutes)
+app.use('/cart',CartRoutes)
 const PORT = 5000
 app.listen(PORT,()=>{
     console.log(`Server Running on Port ${PORT}`)

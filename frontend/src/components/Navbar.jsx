@@ -1,9 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../styles/Navbar.css'
 import { Link } from 'react-router-dom'
-import {  FaSearch, FaShoppingBag, FaUser } from "react-icons/fa";
+import { FaSearch, FaShoppingBag, FaUser } from "react-icons/fa";
+import { cartCount } from '../Api/api';
+
 
 const Navbar = () => {
+
+    const [count, setCount] = useState(0)
+
+    useEffect(() => {
+        const fetchCount = async () => {
+            const res = await cartCount()
+            setCount(res.count)
+        }
+        fetchCount()
+    }, [])
 
 
     return (
@@ -33,9 +45,13 @@ const Navbar = () => {
 
                 {/* icons */}
                 <div className="nav-icons">
-                    <FaSearch/>
+                    <FaSearch />
                     <Link to='/login'><FaUser /></Link>
-                    <FaShoppingBag />                    
+                    <div className="cart-icon">
+                        <FaShoppingBag />
+                        <span>{count}</span>
+                    </div>
+
                 </div>
             </div>
         </div>
