@@ -11,6 +11,7 @@ router.post('/forgot-password',UserController.forgotPassword)
 router.post('/reset-password',UserController.resetPassword)
 router.post('/update/:id',AuthMiddleware,UserController.updateUser)
 router.post('/delete/:id',AuthMiddleware,UserController.deleteUser)
+router.get('/check-auth',AuthMiddleware,UserController.authCheck)
 
 
 // User product Routes

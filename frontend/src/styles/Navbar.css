@@ -1,50 +1,51 @@
-.logo-section{
+.logo-section {
     display: flex;
     align-items: center;
     /* gap: 10px; */
 }
 
-.logo-section span{
+.logo-section span {
     color: orange;
 }
 
-.nav{
+.nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px 80px 20px 80px;
 }
-.logo-section img{
+
+.logo-section img {
     width: 100px;
     height: 60px;
 }
 
-.logo-section h1{
+.logo-section h1 {
     font-size: 45px;
     font-weight: bold;
     margin: 0;
 }
 
-.logo-section p{
+.logo-section p {
     letter-spacing: 4px;
     margin: 0;
     font-size: 19px;
 }
 
-.nav-items{
+.nav-items {
     display: flex;
-    gap:30px ;
+    gap: 30px;
     font-size: 20px;
 }
 
-.nav-items a{
+.nav-items a {
     text-decoration: none;
     color: black;
     cursor: pointer;
     transition: 0.3s;
 }
 
-.nav-items a:hover{
+.nav-items a:hover {
     color: orange;
     border-bottom: 2px solid orange;
     text-decoration: underline;
@@ -54,18 +55,18 @@
     color: orange;
 } */
 
-.nav-icons{
+.nav-icons {
     display: flex;
     gap: 45px;
     font-size: 20px;
 }
 
 /* cart */
-.cart-icon{
+.cart-icon {
     position: relative;
 }
 
-.cart-icon span{
+.cart-icon span {
     position: absolute;
     top: -10px;
     right: -10px;
@@ -83,4 +84,29 @@
     align-items: center;
 
     font-size: 12px;
+}
+
+/* Logot */
+.user-menu {
+    position: relative;
+    align-items: center;
+}
+
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+
+    background: white;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.dropdown-menu span {
+    padding: 8px 12px;
 }

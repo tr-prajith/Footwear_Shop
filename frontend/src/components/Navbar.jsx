@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react'
 import '../styles/Navbar.css'
 import { Link } from 'react-router-dom'
 import { FaSearch, FaShoppingBag, FaUser } from "react-icons/fa";
-import { cartCount } from '../Api/api';
+import { authCheck, cartCount } from '../Api/api';
 
 
 const Navbar = () => {
+
+
 
     const [count, setCount] = useState(0)
 
@@ -15,7 +17,36 @@ const Navbar = () => {
             setCount(res.count)
         }
         fetchCount()
+
     }, [])
+
+    // For Login & Logout
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const [showMenu, setShowMenu] = useState(false)
+
+    useEffect(() => {
+        const checkAuth = async () => {
+            const res = await authCheck()
+            console.log("Response", res);
+
+            if (res.authenticated) {
+                console.log("setting state true");
+
+                setIsLoggedIn(true)
+            }
+        }
+        checkAuth()
+
+
+    }, [])
+
+    console.log("Login State:", isLoggedIn)
+
+
+    // Menu after login
+    const handleUserIcon = () => {
+        setShowMenu(!showMenu)
+    }
 
 
     return (
@@ -46,7 +77,23 @@ const Navbar = () => {
                 {/* icons */}
                 <div className="nav-icons">
                     <FaSearch />
-                    <Link to='/login'><FaUser /></Link>
+                    {isLoggedIn ? (
+                        <div className='user-menu'>
+                            <FaUser onClick={handleUserIcon} />
+                            {showMenu && (
+
+                                <div className='dropdown-menu'>
+                                    <span>Profile</span>
+                                    <span>Orders</span>
+                                    <span>Logout</span>
+                                </div>
+                            )}
+                        </div>
+                    ) : (<Link to='/login'>
+
+                        <FaUser />
+                    </Link>
+                    )}
                     <div className="cart-icon">
                         <FaShoppingBag />
                         <span>{count}</span>
@@ -55,6 +102,7 @@ const Navbar = () => {
                 </div>
             </div>
         </div>
+
     )
 }
 

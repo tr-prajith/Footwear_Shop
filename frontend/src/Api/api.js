@@ -71,10 +71,10 @@ export const addToCart = async (cartData) => {
         {
             method: "POST",
             headers: {
-                "Contend-Type" : "application/json"
+                "Content-Type": "application/json"
             },
-            credentials:"include",
-            body : JSON.stringify(cartData)
+            credentials: "include",
+            body: JSON.stringify(cartData)
         }
     )
     return res.json()
@@ -89,4 +89,16 @@ export const cartCount = async () => {
         }
     )
     return res.json()
+}
+
+// Logout check
+export const authCheck = async () => {
+     
+    const res = await fetch(`${baseurl}/user/check-auth`,
+        {
+            credentials: "include"
+        }
+    )
+    return res.json()
+    
 }

@@ -3,9 +3,9 @@ const Cart = require('../models/cartModel')
 const addToCart = async(req, res) =>{
     try{
         console.log(req.body)
-        const {bookingId, quantity, size} = req.body 
+        const {productId, quantity, size} = req.body 
         const userId = req.user.id
-        const cart = await Cart.findOne({userId})
+        let cart = await Cart.findOne({userId})
 
         if(!cart){
             cart = new Cart({
@@ -36,7 +36,8 @@ const addToCart = async(req, res) =>{
         return res.status(200).json({msg:"Product added to cart", data:cart, success: true})
 
     }catch(error){
-        return res.status(500).json({msg:"Unable to add product to cart"})
+        console.log(error)
+        return res.status(500).json({msg:"Unable to add product to cart",error})
     }
 }
 
@@ -51,13 +52,15 @@ const cartCount = async(req, res) => {
         }
 
 
-        const totalCount = 0
+        let totalCount = 0
         cart.products.forEach((item) => {
             totalCount += item.quantity
         })
 
         return res.status(200).json({success:true, count: totalCount})
     }catch(error){
+        console.log(error);
+        
         return res.status(500).json({msg:"unable to fetch cart count",error})
     }   
 }

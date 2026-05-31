@@ -19,7 +19,7 @@ const registerUser = async (req, res) => {
             password: hashedPassword
         })
         await newUser.save()
-        res.status(201).json({ msg: "User Created Successfully", data: newUser, success:true })
+        res.status(201).json({ msg: "User Created Successfully", data: newUser, success: true })
     } catch (error) {
         res.status(500).json({ msg: "Signup Failed", error })
     }
@@ -49,12 +49,12 @@ const userLogin = async (req, res) => {
             secure: true,
             sameSite: "strict",
             maxAge: 24 * 60 * 60 * 1000
-            
+
         })
         console.log("Cookie sent")
 
-        return res.status(200).json({ msg: "Login Successfully", token: token ,success:true, data:user.role })
-        
+        return res.status(200).json({ msg: "Login Successfully", token: token, success: true, data: user.role })
+
         console.log(userData)
     } catch (error) {
         return res.status(500).json({ msg: "Server Error", error })
@@ -144,5 +144,15 @@ const deleteUser = async (req, res) => {
     }
 }
 
+// Logout checking
 
-module.exports = { registerUser, userLogin, forgotPassword, resetPassword, updateUser, deleteUser }
+const authCheck = async (req, res) => {
+    try {
+        res.status(200).json({msg:"authenticated", success: true, authenticated: true })
+    } catch (error) {
+        res.status(500).json({msg:"Not Authenticated", success: false, authenticated: false })
+    }
+}
+
+
+module.exports = { registerUser, userLogin, forgotPassword, resetPassword, updateUser, deleteUser, authCheck }

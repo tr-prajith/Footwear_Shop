@@ -5,7 +5,6 @@ const Products = require('../models/productModel')
 
 
 
-// Using Multer to add image
 
 // Create Product
 const createProduct = async (req, res) => {
@@ -63,5 +62,7 @@ const deleteProduct = async (req, res) => {
         res.status(500).json({ msg: "Unable to delete the product. Please try again later.", error })
     }
 }
+
+
 
 module.exports = {  createProduct, showProduct, updateProduct, deleteProduct  }
