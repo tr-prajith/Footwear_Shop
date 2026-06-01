@@ -7,6 +7,7 @@ import SignUp from '../components/SignUp'
 import Forgot from '../components/Forgot'
 import Reset from '../components/Reset'
 import GetProducts from '../user/GetProducts'
+import Cart from '../user/Cart'
 
 const UserRoutes = () => {
     return (
@@ -19,6 +20,7 @@ const UserRoutes = () => {
             <Route path='/reset' element={<Reset/>}/>
 
             {/* Get products */}
+            <Route path='/cart' element={<Cart/>}/>
             
         </Routes>
     )

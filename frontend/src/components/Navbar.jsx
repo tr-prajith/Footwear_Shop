@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import '../styles/Navbar.css'
 import { Link } from 'react-router-dom'
 import { FaSearch, FaShoppingBag, FaUser } from "react-icons/fa";
-import { authCheck, cartCount } from '../Api/api';
+import { authCheck, cartCount, logout } from '../Api/api';
 
 
 const Navbar = () => {
@@ -31,15 +31,11 @@ const Navbar = () => {
 
             if (res.authenticated) {
                 console.log("setting state true");
-
                 setIsLoggedIn(true)
             }
         }
         checkAuth()
-
-
     }, [])
-
     console.log("Login State:", isLoggedIn)
 
 
@@ -48,7 +44,16 @@ const Navbar = () => {
         setShowMenu(!showMenu)
     }
 
+    // Logout
+    const handleLogout = async () => {
+        const res = await logout()
 
+        if (res.success) {
+            setIsLoggedIn(false)
+            setShowMenu(false)
+        }
+        console.log(res);
+    }
     return (
 
         // Navbar Logo Section
@@ -85,18 +90,20 @@ const Navbar = () => {
                                 <div className='dropdown-menu'>
                                     <span>Profile</span>
                                     <span>Orders</span>
-                                    <span>Logout</span>
+                                    <span onClick={handleLogout}>Logout</span>
                                 </div>
                             )}
                         </div>
-                    ) : (<Link to='/login'>
-
-                        <FaUser />
-                    </Link>
+                    ) : (
+                        < Link to='/login'>
+                            <FaUser />
+                        </Link>
                     )}
                     <div className="cart-icon">
-                        <FaShoppingBag />
-                        <span>{count}</span>
+                        <Link to='/cart'>
+                            <FaShoppingBag />
+                            <span>{count}</span>
+                        </Link>
                     </div>
 
                 </div>
@@ -105,5 +112,6 @@ const Navbar = () => {
 
     )
 }
+
 
 export default Navbar

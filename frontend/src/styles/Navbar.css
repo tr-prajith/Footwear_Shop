@@ -51,9 +51,9 @@
     text-decoration: underline;
 }
 
-/* .active{
+.active{
     color: orange;
-} */
+}
 
 .nav-icons {
     display: flex;
@@ -110,3 +110,14 @@
 .dropdown-menu span {
     padding: 8px 12px;
 }
+
+.nav-icons:hover{
+    cursor: pointer;
+}
+
+.dropdown-menu span:hover{
+    background-color: orange;
+    transform: scale(1.2);
+}
+
+

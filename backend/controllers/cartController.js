@@ -1,54 +1,54 @@
 const Cart = require('../models/cartModel')
 
-const addToCart = async(req, res) =>{
-    try{
+const addToCart = async (req, res) => {
+    try {
         console.log(req.body)
-        const {productId, quantity, size} = req.body 
+        const { productId, quantity, size } = req.body
         const userId = req.user.id
-        let cart = await Cart.findOne({userId})
+        let cart = await Cart.findOne({ userId })
 
-        if(!cart){
+        if (!cart) {
             cart = new Cart({
                 userId,
-                products:[]
+                products: []
             })
         }
 
         // checking same prosuct and same size already exists
-        const existingProduct =cart.products.find(
+        const existingProduct = cart.products.find(
             (item) =>
                 item.productId.toString() === productId &&
-            item.size === size
+                item.size === size
         )
 
         // if product exists increase the quantity
-        if(existingProduct){
+        if (existingProduct) {
             existingProduct.quantity += quantity
-        }else{
+        } else {
 
             // Add new product
             cart.products.push({
-                productId,quantity,size
+                productId, quantity, size
             })
         }
         await cart.save()
 
-        return res.status(200).json({msg:"Product added to cart", data:cart, success: true})
+        return res.status(200).json({ msg: "Product added to cart", data: cart, success: true })
 
-    }catch(error){
+    } catch (error) {
         console.log(error)
-        return res.status(500).json({msg:"Unable to add product to cart",error})
+        return res.status(500).json({ msg: "Unable to add product to cart", error })
     }
 }
 
 // Cart Count
-const cartCount = async(req, res) => {
-    try{
+const cartCount = async (req, res) => {
+    try {
         const userId = req.user.id
-        const cart = await Cart.findOne({userId})
+        const cart = await Cart.findOne({ userId })
 
-        if(!cart){
-            return res.status(200).json({ success:true, count: 0})
+        if (!cart) {
+            return res.status(200).json({ success: true, count: 0 })
         }
 
 
@@ -57,12 +57,24 @@ const cartCount = async(req, res) => {
             totalCount += item.quantity
         })
 
-        return res.status(200).json({success:true, count: totalCount})
-    }catch(error){
+        return res.status(200).json({ success: true, count: totalCount })
+    } catch (error) {
         console.log(error);
-        
-        return res.status(500).json({msg:"unable to fetch cart count",error})
-    }   
+
+        return res.status(500).json({ msg: "unable to fetch cart count", error })
+    }
 }
 
-module.exports = {addToCart, cartCount}
+const getCart = async (req, res) => {
+    try {
+        const cart = await Cart.findOne({
+            userId: req.user.id
+        }).populate('products.productId')
+
+        res.status(200).json({msg:"Cart items fetched Successfully",success:true, data:cart})
+    }catch(error){
+        res.status(500).json({msg:"Unable to fetch cart",success:false})
+    }
+}
+
+module.exports = { addToCart, cartCount, getCart }

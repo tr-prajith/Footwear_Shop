@@ -4,6 +4,7 @@ const UserController = require('../controllers/userController')
 const ProductController =require('../controllers/productContoller')
 const AuthMiddleware = require('../middlewares/authMiddleware')
 
+
 // Authentication Routes
 router.post('/signup',UserController.registerUser)
 router.post('/login',UserController.userLogin)
@@ -12,6 +13,8 @@ router.post('/reset-password',UserController.resetPassword)
 router.post('/update/:id',AuthMiddleware,UserController.updateUser)
 router.post('/delete/:id',AuthMiddleware,UserController.deleteUser)
 router.get('/check-auth',AuthMiddleware,UserController.authCheck)
+router.post('/logout',AuthMiddleware,UserController.logOut)
+
 
 
 // User product Routes

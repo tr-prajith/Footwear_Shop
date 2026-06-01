@@ -102,3 +102,24 @@ export const authCheck = async () => {
     return res.json()
     
 }
+
+// Logout
+export const logout =async () => {
+    const res = await fetch(`${baseurl}/user/logout`,
+        {
+            method:"POST",
+            credentials:"include"
+        }
+    )
+    return res.json()
+}
+
+// Fetch cart items
+export const getCart = async () => {
+    const res = await fetch(`${baseurl}/cart/get-cart`,
+        {
+            credentials:"include"
+        }
+    )
+    return res.json()
+}

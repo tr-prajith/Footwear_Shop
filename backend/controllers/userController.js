@@ -148,11 +148,22 @@ const deleteUser = async (req, res) => {
 
 const authCheck = async (req, res) => {
     try {
-        res.status(200).json({msg:"authenticated", success: true, authenticated: true })
+        res.status(200).json({ msg: "authenticated", success: true, authenticated: true })
     } catch (error) {
-        res.status(500).json({msg:"Not Authenticated", success: false, authenticated: false })
+        res.status(500).json({ msg: "Not Authenticated", success: false, authenticated: false })
     }
 }
 
 
-module.exports = { registerUser, userLogin, forgotPassword, resetPassword, updateUser, deleteUser, authCheck }
+const logOut = async (req, res) => {
+    try {
+        res.clearCookie('token')
+
+        res.status(200).json({ msg: "Logged Out Successfully", success: true })
+    } catch (error) {
+        res.status(500).json({ msg: "Logout failed", success: false })
+    }
+}
+
+
+module.exports = { registerUser, userLogin, forgotPassword, resetPassword, updateUser, deleteUser, authCheck, logOut }
